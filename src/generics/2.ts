@@ -1,33 +1,17 @@
-type AllType = {
-  name: string;
-  position: number;
-  color: string;
-  weight: number;
-};
+type TopType = 'name' | 'color';
+type BottomType = 'position' | 'weight';
 
-function compare<T extends AllType>(top: T, bottom: T): AllType {
-  return {
-    name: top.name,
-    color: top.color,
-    position: bottom.position,
-    weight: bottom.weight,
-  };
+interface SomeType<T extends TopType, U extends BottomType> {
+    top: T;
+    bottom: U;
 }
 
-const topItem = {
-  name: 'Item 1',
-  position: 1,
-  color: 'red',
-  weight: 10,
+const topObj1: SomeType<'name', 'position'> = {
+    top: 'name',
+    bottom: 'position',
 };
 
-const bottomItem = {
-  name: 'Item 2',
-  position: 2,
-  color: 'blue',
-  weight: 20,
+const topObj2: SomeType<'color', 'weight'> = {
+    top: 'color',
+    bottom: 'weight',
 };
-
-const result = compare(topItem, bottomItem);
-console.log(result);
-
