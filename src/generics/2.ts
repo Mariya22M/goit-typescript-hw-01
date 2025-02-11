@@ -1,17 +1,13 @@
-type TopType = 'name' | 'color';
-type BottomType = 'position' | 'weight';
+type Top = { name: string } | { color: string };
+type Bottom = { position: number } | { weight: number };
 
-interface SomeType<T extends TopType, U extends BottomType> {
-    top: T;
-    bottom: U;
+function combine<T extends Top, U extends Bottom>(top: T, bottom: U): T & U {
+    return { ...top, ...bottom };
 }
 
-const topObj1: SomeType<'name', 'position'> = {
-    top: 'name',
-    bottom: 'position',
-};
 
-const topObj2: SomeType<'color', 'weight'> = {
-    top: 'color',
-    bottom: 'weight',
-};
+const result1 = combine({ name: "Hat" }, { position: 1 });
+console.log(result1);
+
+const result2 = combine({ color: "Red" }, { weight: 10 });
+console.log(result2);

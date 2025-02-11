@@ -1,5 +1,17 @@
-// Типізуємо масив як кортеж, де перший елемент — рядок, а другий — число
-let person: [string, number] = ['Max', 21];
+type TopType = 'name' | 'color';
+type BottomType = 'position' | 'weight';
 
-// Використовуємо значення person
-console.log(person[0], person[1]);
+interface SomeType<T extends TopType, U extends BottomType> {
+    top: T;
+    bottom: U;
+}
+
+const topObj1: SomeType<'name', 'position'> = {
+    top: 'name',
+    bottom: 'position',
+};
+
+const topObj2: SomeType<'color', 'weight'> = {
+    top: 'color',
+    bottom: 'weight',
+};

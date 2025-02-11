@@ -1,17 +1,7 @@
-type Top = 'name' | 'color';
-type Bottom = 'position' | 'weight';
-
-interface SomeType<T extends Top, U extends Bottom> {
-    top: T;
-    bottom: U;
+function merge<T extends object, U extends object>(objA: T, objB: U): T & U {
+    return Object.assign({}, objA, objB);
 }
 
-const obj1: SomeType<'name', 'position'> = {
-    top: 'name',
-    bottom: 'position',
-};
 
-const obj2: SomeType<'color', 'weight'> = {
-    top: 'color',
-    bottom: 'weight',
-};
+const mergedObj = merge({ name: "Alice" }, { age: 25 });
+console.log(mergedObj);
